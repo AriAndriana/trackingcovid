@@ -12,6 +12,6 @@ class Kasus2 extends Model
     protected $table = "kasus2s";
 
     public function rw(){
-        return $this->belongsTo(Rw::class);
+        return $this->belongsTo(Rw::class, 'id_rw');
     }
 }

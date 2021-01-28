@@ -6,10 +6,8 @@
         <div class="col-md-12">
             <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                        Kelurahan
-                        <a href=" {{route('kelurahan.create')}} " class="btn btn-primary" style="float: right;">Tambah Data</a>
-                    </h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Provinsi
+                    <a href="{{ route('provinsi.create') }}" class="btn btn-primary" style="float: right">Tambah Data</a></h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -17,8 +15,7 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kelurahan</th>
-                                    <th>Kota</th>
+                                    <th>Nama provinsi</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -29,14 +26,13 @@
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td> {{$item->nama_kelurahan}} </td>
-                                        <td> {{$item->kecamatan->nama_kecamatan}} </td>
+                                        <td> {{$item->nama_provinsi}} </td>
                                         <td>
                                             <center>
-                                                <form action="{{ route('kelurahan.destroy', $item->id) }}" method="post">
+                                                <form action="{{ route('provinsi.destroy', $item->id) }}" method="post">
                                                     @csrf
                                                     @method('Delete')
-                                                    <a class="btn btn-success" href=" {{route('kelurahan.edit', $item->id)}} ">
+                                                    <a class="btn btn-success" href=" {{route('provinsi.edit', $item->id)}} ">
                                                         Edit
                                                     </a> |
                                                     <button type="submit" class="btn btn-danger">Delete</button>

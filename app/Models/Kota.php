@@ -10,7 +10,7 @@ class Kota extends Model
     use HasFactory;
 
     protected $table = "kotas";
-    protected $fillable = ['kode_kota', 'nama_kota'];
+    protected $fillable = ['nama_kota'];
     public $timestamp = true;
 
     public function kecamatan(){

@@ -27,7 +27,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group([ 'middleware' => ['auth']], function () {
     Route::resource('provinsi', ProvinsiController::class);
     Route::resource('kota', KotaController::class);
     Route::resource('kecamatan', KecamatanController::class);

@@ -8,22 +8,24 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
-                    <form action=" {{ route('kota.update' ,$kota->id) }} " method="POST" enctype="multipart/form-data">
+                    <form action=" {{ route('kecamatan.update' ,$kecamatan->id) }} " method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="_method" value="PATCH">
                         @csrf
                             <div class="form-group">
-                                <label for="">Masukkan Kode Kota</label>
-                                <input type="number" class="form-control" value="{{ $kota->kode_kota }}" name="kode_kota" required>
+                                <label for="">Masukkan Kode Kecamatan</label>
+                                <input type="number" class="form-control" value="{{ $kecamatan->kode_kecamatan }}" name="kode_kecamatan" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Masukkan Nama Kota</label>
-                                <input type="text" class="form-control" value="{{ $kota->nama_kota }}" name="nama_kota" required>
+                                <label for="">Masukkan Nama Kecamatan</label>
+                                <input type="text" class="form-control" value="{{ $kecamatan->nama_kecamatan }}" name="nama_kecamatan" required>
                             </div>
                             <div class="form-group">
-                                <label for="">Provinsi</label>
-                                <select class="form-control"  name="id_provinsi" id="">
-                                    @foreach ($provinsi as $item)
-                                        <option value=" {{$item->id}} "> {{$item->nama_provinsi}} </option>
+                                <label for="">Kota</label>
+                                <select class="form-control"  name="id_kota" id="">
+                                    @foreach ($kota as $item)
+                                        <option value=" {{$item->id}} " {{$item->id == $kecamatan->id_kota ? 'selected' : ''}} >
+                                            {{$item->nama_kota}}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rw;
+use App\Models\Kasus2;
 
 class LaporanController extends Controller
 {
@@ -13,7 +15,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $tracking = Kasus2::with('rw.kelurahan.kecamatan.kota.provinsi')->get();
+        return view('admin.laporan.index', compact('tracking'));
     }
 
     /**
@@ -23,7 +26,7 @@ class LaporanController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.laporan.create');
     }
 
     /**

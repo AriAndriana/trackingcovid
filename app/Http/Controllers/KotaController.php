@@ -19,7 +19,7 @@ class KotaController extends Controller
     {
         $data = Kota::all();
         $provinsi = Provinsi::all();
-        return view('kota.index', compact('data'));
+        return view('admin.kota.index', compact('data'));
         
     }
 
@@ -32,7 +32,7 @@ class KotaController extends Controller
     {
         $data = Kota::all();
         $provinsi = Provinsi::all();
-        return view('kota.create', compact('data', 'provinsi'));
+        return view('admin.kota.create', compact('data', 'provinsi'));
     }
 
     /**
@@ -43,8 +43,19 @@ class KotaController extends Controller
      */
     public function store(Request $request)
     {
+        $pesan=[
+            'nama_kota.required' => 'Nama Kota Harus Diisi',
+            'nama_kota.max' => 'Nama Kota Sudah Maximal',
+            'nama_kota.min' => 'Nama Kota Terlalu Pendek',
+            'nama_kota.unique' => 'Data Sudah Ada',
+            'nama_kota.numeric' => 'Nama Kota Tidak Boleh Menggunakan Angka'
+        ];
+
+        $this->validate($request,[
+            'nama_kota' => 'required|max:50|min:3|unique:kotas|numeric'
+        ],$pesan);
+
         $kota = new Kota;
-        $kota->kode_kota = $request->kode_kota;
         $kota->nama_kota = $request->nama_kota;
         $kota->id_provinsi = $request->id_provinsi;
         $kota->save();
@@ -72,7 +83,7 @@ class KotaController extends Controller
     {
         $kota = Kota::findOrFail($id);
         $provinsi = Provinsi::all();
-        return view('kota.edit', compact('kota', 'provinsi'));
+        return view('admin.kota.edit', compact('kota', 'provinsi'));
     }
 
     /**
@@ -85,7 +96,6 @@ class KotaController extends Controller
     public function update(Request $request, $id)
     {
         $kota = Kota::findOrFail($id);
-        $kota->kode_kota = $request->kode_kota;
         $kota->nama_kota = $request->nama_kota;
         $kota->id_provinsi = $request->id_provinsi;
         $kota->save();

@@ -18,7 +18,6 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Kota</th>
-                                    <th>Kode Kota</th>
                                     <th>Provinsi</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -31,7 +30,6 @@
                                     <tr>
                                         <td>{{$no++}}</td>
                                         <td> {{$item->nama_kota}} </td>
-                                        <td> {{$item->kode_kota}} </td>
                                         <td> {{$item->provinsi->nama_provinsi}} </td>
                                         <td>
                                             <center>

@@ -17,7 +17,7 @@ class KelurahanController extends Controller
     {
         $data = Kelurahan::all();
         $kecamatan = Kecamatan::all();
-        return view('kelurahan.index', \compact('data'));
+        return view('admin.kelurahan.index', \compact('data'));
     }
 
     /**
@@ -29,7 +29,7 @@ class KelurahanController extends Controller
     {
         $data = Kelurahan::all();
         $kecamatan = Kecamatan::all();
-        return view('kelurahan.create', \compact('data', 'kecamatan'));
+        return view('admin.kelurahan.create', \compact('data', 'kecamatan'));
     }
 
     /**
@@ -40,6 +40,18 @@ class KelurahanController extends Controller
      */
     public function store(Request $request)
     {
+        $pesan=[
+            'nama_kelurahan.required' => 'Nama Kelurahan Harus Diisi',
+            'nama_kelurahan.min' => 'Nama Kelurahan Terlalu Pendek',
+            'nama_kelurahan.max' => 'Nama Kelurahan Sudah Maximal',
+            'nama_kelurahan.unqiue' => 'Data Sudah Ada',
+            'nama_kelurahan.numeric' => 'Nama Kelurahan Tidak Boleh Menggunakan Angka'
+        ];
+
+        $this->validate($request,[
+            'nama_kelurahan' => 'required|max:50|min:3|unqiue:kelurahans|numeric'
+        ],$pesan);
+
         $kelurahan = new Kelurahan;
         $kelurahan->nama_kelurahan = $request->nama_kelurahan;
         $kelurahan->id_kecamatan = $request->id_kecamatan;
@@ -68,7 +80,7 @@ class KelurahanController extends Controller
     {
         $kelurahan = Kelurahan::findOrFail($id);
         $kecamatan = Kecamatan::all();
-        return view('kelurahan.edit', compact('kelurahan', 'kecamatan'));
+        return view('admin.kelurahan.edit', compact('kelurahan', 'kecamatan'));
     }
 
     /**

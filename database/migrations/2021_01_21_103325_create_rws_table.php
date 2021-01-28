@@ -17,10 +17,6 @@ class CreateRwsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_kelurahan');
             $table->string('nama');
-            $table->string('jumlah_positif');
-            $table->string('jumlah_sembuh');
-            $table->string('jumlah_meninggal');
-            $table->date('tanggal');
             $table->foreign('id_kelurahan')->references('id')->on('kelurahans')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

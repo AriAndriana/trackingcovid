@@ -11,12 +11,9 @@
                     <form action=" {{ route('kota.store') }} " method="POST" enctype="multipart/form-data">
                         @csrf
                             <div class="form-group">
-                                <label for="">Masukkan Kode Kota</label>
-                                <input type="number" class="form-control" name="kode_kota" required>
-                            </div>
-                            <div class="form-group">
                                 <label for="">Masukkan Nama Kota</label>
                                 <input type="text" class="form-control" name="nama_kota" required>
+                                {!! $errors->first('nama_kota','<p class="help-block" style="color:red">:message</p>') !!}
                             </div>
                             <div class="form-group">
                                 <label for="">Provinsi</label>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Rw;
+use App\Models\Kelurahan;
 
 class RwController extends Controller
 {
@@ -13,7 +15,9 @@ class RwController extends Controller
      */
     public function index()
     {
-        //
+        $data = Rw::all();
+        $kelurahan = Kelurahan::all();
+        return view('admin.rw.index', \compact('data'));
     }
 
     /**
@@ -23,7 +27,9 @@ class RwController extends Controller
      */
     public function create()
     {
-        //
+        $data = Rw::all();
+        $kelurahan = Kelurahan::all();
+        return view('admin.rw.create', compact('data', 'kelurahan'));
     }
 
     /**
@@ -34,7 +40,22 @@ class RwController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pesan=[
+            'nama_rw.required' => 'Nama Rw Harus Diisi',
+            'nama_rw.min' => 'Nama Rw Terlalu Pendek',
+            'nama_rw.max' => 'Nama Rw Sudah Maximal',
+            'nama_rw.unqiue' => 'Data Sudah Ada',
+            'nama_rw.numeric' => 'Data Tidak Boleh Menggunakan Angka'
+        ];
+
+        $this->validate($request,[
+            'nama_rw' => 'required|max:50|min:3|unique:rws|numeric'
+        ],$pesan);
+
+        $data = new Rw;
+        $data->id_kelurahan = $request->id_kelurahan;
+        $data->nama = $request->nama;
+        return \redirect()->route('rw.index', \compact('data'));
     }
 
     /**
@@ -56,7 +77,9 @@ class RwController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Rw::findOrFail($id);
+        $kelurahan = Kelurahan::all();
+        return view('admin.rw.edit', compact('data', 'kelurahan'));
     }
 
     /**
@@ -68,7 +91,11 @@ class RwController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Rw::findOrFail($id);
+        $data->id_kelurahan = $request->id_kelurahan;
+        $data->nama = $request->nama;
+        $data->save();
+        return redirect()->route('rw.index', \compact('data'));
     }
 
     /**
@@ -79,6 +106,8 @@ class RwController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Rw::findOrFail($id);
+        $data->delete();
+        return redirect()->route('rw.index', compact('data'));
     }
 }

@@ -19,7 +19,7 @@ class KecamatanController extends Controller
         $data = Kecamatan::all();
         $kota = Kota::all();
         $provinsi = Provinsi::all();
-        return view('kecamatan.index', compact('data'));
+        return view('admin.kecamatan.index', compact('data'));
     }
 
     /**
@@ -32,7 +32,7 @@ class KecamatanController extends Controller
         $data = Kecamatan::all();
         $kota = Kota::all();
         $provinsi = Provinsi::all();
-        return view('kecamatan.create', compact('data', 'kota', 'provinsi'));
+        return view('admin.kecamatan.create', compact('data', 'kota', 'provinsi'));
     }
 
     /**
@@ -43,6 +43,22 @@ class KecamatanController extends Controller
      */
     public function store(Request $request)
     {
+        $pesan=[
+            'nama_kecamatan.required' => 'Nama Kecamatan Harus Diisi',
+            'nama_kecamatan.min' => 'Nama Kecamatan Terlalu Pendek',
+            'nama_kecamatan.max' => 'Nama Kecamatan Sudah Maximal',
+            'nama_kecamatan.unique' => 'Data Sudah Ada',
+            'nama_kecamatan.numeric' => 'Nama Kecamatan Tidak Boleh Menggunakan Angka',
+            'kode_kecamatan.required' => 'Kode Kecamatan Harus Diisi',
+            'kode_kecamatan.min' => 'Kode Kecamatan Terlalu Pendek',
+            'kode_kecamatna.max' => 'Kode Kecamatan Terlalu Panjang'
+        ];
+
+        $this->validate($request,[
+            'nama_kecamatan' => 'required|max:50|min:3|unique:kecamatans|numeric',
+            'kode_kecamatan' => 'required|max:12|min:2'
+        ],$pesan);
+
         $kecamatan = new Kecamatan;
         $kecamatan->kode_kecamatan = $request->kode_kecamatan;
         $kecamatan->nama_kecamatan = $request->nama_kecamatan;
@@ -72,7 +88,7 @@ class KecamatanController extends Controller
     {
         $kecamatan = Kecamatan::findOrFail($id);
         $kota = Kota::all();
-        return view('kecamatan.edit', compact('kecamatan', 'kota'));
+        return view('admin.kecamatan.edit', compact('kecamatan', 'kota'));
     }
 
     /**
