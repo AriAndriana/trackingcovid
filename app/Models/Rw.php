@@ -14,9 +14,9 @@ class Rw extends Model
     public $timestamp = true;
 
     public function kasus2(){
-        return $this->hasMany(Kasus2::class);
+        return $this->hasMany(Kasus2::class, 'id_rw');
     }
     public function kelurahan(){
-        return $this->belongsTo(Kelurahan::class, 'id_provinsi');
+        return $this->belongsTo(Kelurahan::class, 'id_kelurahan');
     }
 }

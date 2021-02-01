@@ -48,11 +48,10 @@ class KotaController extends Controller
             'nama_kota.max' => 'Nama Kota Sudah Maximal',
             'nama_kota.min' => 'Nama Kota Terlalu Pendek',
             'nama_kota.unique' => 'Data Sudah Ada',
-            'nama_kota.numeric' => 'Nama Kota Tidak Boleh Menggunakan Angka'
         ];
 
         $this->validate($request,[
-            'nama_kota' => 'required|max:50|min:3|unique:kotas|numeric'
+            'nama_kota' => 'required|max:50|min:3|unique:kotas'
         ],$pesan);
 
         $kota = new Kota;

@@ -15,8 +15,8 @@
                         @csrf
                             <div class="form-group">
                                 <label for="">Masukkan Nama Rw</label>
-                                <input type="text" class="form-control" name="nama_rw" required>
-                                {!! $errors->first('nama_rw','<p class="help-block" style="color:red">:message</p>') !!}
+                                <input type="text" class="form-control" name="nama" required>
+                                {!! $errors->first('nama','<p class="help-block" style="color:red">:message</p>') !!}
                             </div>
                             <div class="form-group">
                                 <label for="">Kelurahan</label>

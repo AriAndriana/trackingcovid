@@ -40,14 +40,14 @@ class TrackingData extends Component
             $rw = Rw::with('kelurahan.kecamatan.kota.provinsi')->find($selectedRw);
             
             if ($rw) {
-                $this->rw = RW::where('id_kel', $rw->id_kel)->get();
-                $this->kelurahan = Kelurahan::where('id_kec', $rw->kelurahan->id_kec)->get();
-                $this->kecamatan = Kecamatan::where('id_kot', $rw->kelurahan->kecamatan->id_kot)->get();
-                $this->kota = Kota::where('id_prov', $rw->kelurahan->kecamatan->kota->id_prov)->get();
-                $this->selectedProvinsi =$rw->kelurahan->kecamatan->kota->id_prov;
-                $this->selectedKota = $rw->kelurahan->kecamatan->id_kot;
-                $this->selectedKecamatan = $rw->kelurahan->id_kec;
-                $this->selectedKelurahan = $rw->id_kel;
+                $this->rw = RW::where('id_kelurahan', $rw->id_kelurahan)->get();
+                $this->kelurahan = Kelurahan::where('id_kecamatan', $rw->kelurahan->id_kecamatan)->get();
+                $this->kecamatan = Kecamatan::where('id_kota', $rw->kelurahan->kecamatan->id_kota)->get();
+                $this->kota = Kota::where('id_provinsi', $rw->kelurahan->kecamatan->kota->id_provinsi)->get();
+                $this->selectedProvinsi =$rw->kelurahan->kecamatan->kota->id_provinsi;
+                $this->selectedKota = $rw->kelurahan->kecamatan->id_kota;
+                $this->selectedKecamatan = $rw->kelurahan->id_kecamatan;
+                $this->selectedKelurahan = $rw->id_kelurahan;
             }
         }
     }
@@ -59,7 +59,7 @@ class TrackingData extends Component
 
     public function updatedSelectedProvinsi($provinsi)
     {
-        $this->kota = Kota::where('id_prov', $provinsi)->get();
+        $this->kota = Kota::where('id_provinsi', $provinsi)->get();
         $this->selectedKota = NULL;
         $this->selectedKecamatan = NULL;
         $this->selectedKelurahan = NULL;
@@ -67,7 +67,7 @@ class TrackingData extends Component
     }
     public function updatedSelectedKota($kota)
     {
-        $this->kecamatan = Kecamatan::where('id_kot', $kota)->get();
+        $this->kecamatan = Kecamatan::where('id_kota', $kota)->get();
         $this->selectedKecamatan = NULL;
         $this->selectedKelurahan = NULL;
         $this->selectedRw = NULL;
@@ -75,14 +75,14 @@ class TrackingData extends Component
 
     public function updatedSelectedKecamatan($kecamatan)
     {
-        $this->kelurahan = Kelurahan::where('id_kec', $kecamatan)->get();
+        $this->kelurahan = Kelurahan::where('id_kecamatan', $kecamatan)->get();
         $this->selectedKelurahan = NULL;
         $this->selectedRw = NULL;
     }
     public function updatedSelectedKelurahan($kelurahan)
     {
         if (!is_null($kelurahan)) {
-            $this->rw = RW::where('id_kel', $kelurahan)->get();
+            $this->rw = Rw::where('id_kelurahan', $kelurahan)->get();
         }else{
             $this->selectedRw = NULL;
         }

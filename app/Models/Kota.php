@@ -14,7 +14,7 @@ class Kota extends Model
     public $timestamp = true;
 
     public function kecamatan(){
-        return $this->hasMany(Kecamatan::class);
+        return $this->hasMany(Kecamatan::class, 'id_kecamatan');
     }
     public function provinsi(){
         return $this->belongsTo(Provinsi::class, 'id_provinsi');        

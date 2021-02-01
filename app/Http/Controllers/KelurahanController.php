@@ -44,12 +44,11 @@ class KelurahanController extends Controller
             'nama_kelurahan.required' => 'Nama Kelurahan Harus Diisi',
             'nama_kelurahan.min' => 'Nama Kelurahan Terlalu Pendek',
             'nama_kelurahan.max' => 'Nama Kelurahan Sudah Maximal',
-            'nama_kelurahan.unqiue' => 'Data Sudah Ada',
-            'nama_kelurahan.numeric' => 'Nama Kelurahan Tidak Boleh Menggunakan Angka'
+            'nama_kelurahan.unique' => 'Data Sudah Ada',
         ];
 
         $this->validate($request,[
-            'nama_kelurahan' => 'required|max:50|min:3|unqiue:kelurahans|numeric'
+            'nama_kelurahan' => 'required|max:50|min:3|unique:kelurahans'
         ],$pesan);
 
         $kelurahan = new Kelurahan;

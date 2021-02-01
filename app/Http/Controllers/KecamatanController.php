@@ -48,14 +48,13 @@ class KecamatanController extends Controller
             'nama_kecamatan.min' => 'Nama Kecamatan Terlalu Pendek',
             'nama_kecamatan.max' => 'Nama Kecamatan Sudah Maximal',
             'nama_kecamatan.unique' => 'Data Sudah Ada',
-            'nama_kecamatan.numeric' => 'Nama Kecamatan Tidak Boleh Menggunakan Angka',
             'kode_kecamatan.required' => 'Kode Kecamatan Harus Diisi',
             'kode_kecamatan.min' => 'Kode Kecamatan Terlalu Pendek',
             'kode_kecamatna.max' => 'Kode Kecamatan Terlalu Panjang'
         ];
 
         $this->validate($request,[
-            'nama_kecamatan' => 'required|max:50|min:3|unique:kecamatans|numeric',
+            'nama_kecamatan' => 'required|max:50|min:3|unique:kecamatans',
             'kode_kecamatan' => 'required|max:12|min:2'
         ],$pesan);
 

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Rw;
+
 use App\Models\Kasus2;
 
-class LaporanController extends Controller
+class LaporanController extends Controller  
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,8 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $tracking = Kasus2::with('rw.kelurahan.kecamatan.kota.provinsi')->get();
-        return view('admin.laporan.index', compact('tracking'));
+        $laporan = Kasus2::with('rw')->get();
+        return view('admin.laporan.index',compact('laporan'));
     }
 
     /**
@@ -37,7 +39,14 @@ class LaporanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kasus = new Kasus2();
+        $kasus->id_rw = $request->id_rw;
+        $kasus->jumlah_positif = $request->jumlah_positif;
+        $kasus->jumlah_sembuh = $request->jumlah_sembuh;
+        $kasus->jumlah_meninggal = $request->jumlah_meninggal;
+        $kasus->tanggal = $request->tanggal;
+        $kasus->save();
+        return redirect()->route('laporan.index');
     }
 
     /**
@@ -59,7 +68,8 @@ class LaporanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $laporan = Kasus2::findOrFail($id);
+        return view('admin.laporan.edit',compact('laporan'));
     }
 
     /**
@@ -71,7 +81,14 @@ class LaporanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $laporan = Kasus2::findOrFail($id);
+        $laporan -> id_rw = $request->id_rw;
+        $laporan -> jumlah_positif = $request->jumlah_positif;
+        $laporan -> jumlah_sembuh = $request->jumlah_sembuh;
+        $laporan -> jumlah_meninggal = $request->jumlah_meninggal;
+        $laporan -> tanggal = $request->tanggal;
+        $laporan ->save();
+        return redirect()->route('laporan.index');
     }
 
     /**
@@ -82,6 +99,8 @@ class LaporanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $laporan = Kasus2::findOrFail($id);
+        $laporan->delete();
+        return redirect()->route('laporan.index');
     }
 }

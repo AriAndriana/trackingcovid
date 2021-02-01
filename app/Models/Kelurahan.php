@@ -14,7 +14,7 @@ class Kelurahan extends Model
     public $timestamp = true;
 
     public function rw(){
-        return $this->hasMany(Rw::class);
+        return $this->hasMany(Rw::class, 'id_kelurahan');
     }
     public function kecamatan(){
         return $this->belongsTo(Kecamatan::class, 'id_kecamatan');

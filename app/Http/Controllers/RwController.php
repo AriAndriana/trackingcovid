@@ -17,7 +17,7 @@ class RwController extends Controller
     {
         $data = Rw::all();
         $kelurahan = Kelurahan::all();
-        return view('admin.rw.index', \compact('data'));
+        return view('admin.rw.index', \compact('data', 'kelurahan'));
     }
 
     /**
@@ -41,20 +41,17 @@ class RwController extends Controller
     public function store(Request $request)
     {
         $pesan=[
-            'nama_rw.required' => 'Nama Rw Harus Diisi',
-            'nama_rw.min' => 'Nama Rw Terlalu Pendek',
-            'nama_rw.max' => 'Nama Rw Sudah Maximal',
-            'nama_rw.unqiue' => 'Data Sudah Ada',
-            'nama_rw.numeric' => 'Data Tidak Boleh Menggunakan Angka'
+            'nama.required' => 'Nama Rw Harus Diisi',
         ];
 
         $this->validate($request,[
-            'nama_rw' => 'required|max:50|min:3|unique:rws|numeric'
+            'nama' => 'required'
         ],$pesan);
 
-        $data = new Rw;
+        $data = new Rw();
         $data->id_kelurahan = $request->id_kelurahan;
         $data->nama = $request->nama;
+        $data->save();
         return \redirect()->route('rw.index', \compact('data'));
     }
 

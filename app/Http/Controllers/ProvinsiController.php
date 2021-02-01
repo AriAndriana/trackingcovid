@@ -8,6 +8,7 @@ use App\Models\Kota;
 use App\Models\Provinsi;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Alert;
 
 use Validator;
 
@@ -48,18 +49,18 @@ class ProvinsiController extends Controller
             'nama_provinsi.max' => 'Nama Provinsi Sudah Maximal',
             'nama_provinsi.min' => 'Nama Provinsi Terlalu Pendek',
             'nama_provinsi.unqiue' => 'Data Sudah Ada',
-            'nama_provinsi.numeric' => 'Data Tidak Boleh Menggunakan Angka'
+            'nama_provinsi.string' => 'Data Tidak Boleh Menggunakan Angka'
         ];
 
         $this->validate($request,[
-            'nama_provinsi' => 'required|max:50|min:3|unique:provinsis|numeric'
+            'nama_provinsi' => 'required|max:50|min:3|unique:provinsis|string'
         ],$pesan);
 
         $provinsi = new Provinsi();
         $provinsi->nama_provinsi = $request->nama_provinsi;
         $provinsi->save();
-        return redirect()->route('provinsi')
-                ->with(['succes'=>'provinsi berhasil dibuat']);
+        Alert::class('Sukses', 'Data Berhasil Ditambah', 'Sukses');
+        return redirect()->route('provinsi.index');
     }
     
 

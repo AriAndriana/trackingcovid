@@ -33,7 +33,7 @@
                                 @foreach ($data as $item)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td> {{$item->nama_rw}} </td>
+                                        <td> {{$item->nama}} </td>
                                         <td> {{$item->kelurahan->nama_kelurahan}} </td>
                                         <td>
                                             <center>

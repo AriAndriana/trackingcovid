@@ -11,10 +11,10 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <form action="{{route('laporan.store')}}" class="form-horizontal m-t-30" method="post">
+                                <form action="{{route('laporan.update',$laporan->id)}}" class="form-horizontal m-t-30" method="post">
                                     @csrf
-                                    
-                                    @livewire('tracking-data')
+                                    @method('PUT')
+                                    @livewire('tracking-data', ['selectedRw' => $laporan->id_rw, 'idt' => $laporan->id])
                                     
                                     <div class="form-group">
                                         <button type="submit" class="float-right btn btn-info">Submit</button>

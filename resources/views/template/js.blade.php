@@ -33,3 +33,6 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('js/demo/datatables-demo.js')}}"></script>
     @livewireScripts
+    <script src="{{asset('/pathto/js/sweetalert.js')}}"></script>
+    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js')}}"></script>
+    @include('sweet::alert')

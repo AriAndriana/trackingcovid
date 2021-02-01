@@ -14,7 +14,7 @@ class Kecamatan extends Model
     public $timestamp = true;
 
     public function kelurahan(){
-        return $this->hasMany(Kelurahan::class);
+        return $this->hasMany(Kelurahan::class, 'id_kecamatan');
     }
     public function kota(){
         return $this->belongsTo(Kota::class, 'id_kota');
