@@ -46,7 +46,7 @@ class LaporanController extends Controller
         $kasus->jumlah_meninggal = $request->jumlah_meninggal;
         $kasus->tanggal = $request->tanggal;
         $kasus->save();
-        return redirect()->route('laporan.index');
+        return redirect()->route('laporan.index')->withSuccess('Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -88,7 +88,7 @@ class LaporanController extends Controller
         $laporan -> jumlah_meninggal = $request->jumlah_meninggal;
         $laporan -> tanggal = $request->tanggal;
         $laporan ->save();
-        return redirect()->route('laporan.index');
+        return redirect()->route('laporan.index')->withSuccess('Data Berhasil Diubah!');
     }
 
     /**
@@ -101,6 +101,6 @@ class LaporanController extends Controller
     {
         $laporan = Kasus2::findOrFail($id);
         $laporan->delete();
-        return redirect()->route('laporan.index');
+        return redirect()->route('laporan.index')->withSuccess('Data Berhasil Dihapus!');
     }
 }

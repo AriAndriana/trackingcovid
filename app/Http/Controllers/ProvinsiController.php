@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Kota;
 use App\Models\Provinsi;
 use Illuminate\Support\Facades\DB;
 use Auth;
-use Alert;
 
 use Validator;
 
@@ -59,8 +58,7 @@ class ProvinsiController extends Controller
         $provinsi = new Provinsi();
         $provinsi->nama_provinsi = $request->nama_provinsi;
         $provinsi->save();
-        Alert::class('Sukses', 'Data Berhasil Ditambah', 'Sukses');
-        return redirect()->route('provinsi.index');
+        return redirect()->route('provinsi.index')->withSuccess('Data Berhasil Ditambahkan!');
     }
     
 
@@ -100,7 +98,7 @@ class ProvinsiController extends Controller
         $provinsi = Provinsi::findOrFail($id);
         $provinsi->nama_provinsi = $request->nama_provinsi;
         $provinsi->save();
-        return redirect()->route('provinsi.index')->with(['message' => 'Data Berhasil Diubah']);
+        return redirect()->route('provinsi.index')->withSuccess('Data Berhasil Diubah!');
     }
 
     /**
@@ -113,6 +111,6 @@ class ProvinsiController extends Controller
     {
         $provinsi = Provinsi::findOrFail($id);
         $provinsi->delete();
-        return redirect()->route('provinsi.index')->with(['message' => 'Data Berhasil Dihapus']);
+        return redirect()->route('provinsi.index')->with('success', 'Data Berhasil Dihapus');
     }
 }

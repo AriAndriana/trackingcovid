@@ -53,17 +53,17 @@ class KecamatanController extends Controller
             'kode_kecamatna.max' => 'Kode Kecamatan Terlalu Panjang'
         ];
 
-        $this->validate($request,[
+        $request->validate([
             'nama_kecamatan' => 'required|max:50|min:3|unique:kecamatans',
             'kode_kecamatan' => 'required|max:12|min:2'
-        ],$pesan);
+        ], $pesan);
 
         $kecamatan = new Kecamatan;
         $kecamatan->kode_kecamatan = $request->kode_kecamatan;
         $kecamatan->nama_kecamatan = $request->nama_kecamatan;
         $kecamatan->id_kota = $request->id_kota;
         $kecamatan->save();
-        return redirect()->route('kecamatan.index')->with(['message' => 'Data berhasil ditambah']);
+        return redirect()->route('kecamatan.index')->withSuccess('Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -104,7 +104,7 @@ class KecamatanController extends Controller
         $kecamatan->nama_kecamatan = $request->nama_kecamatan;
         $kecamatan->id_kota = $request->id_kota;
         $kecamatan->save();
-        return redirect()->route('kecamatan.index')->with(['message' => 'Data berhasil ditambah']);
+        return redirect()->route('kecamatan.index')->withSuccess('Data Berhasil Diubah!');
     }
 
     /**
@@ -117,6 +117,6 @@ class KecamatanController extends Controller
     {
         $kecamatan = Kecamatan::findOrFail($id);
         $kecamatan->delete();
-        return redirect()->route('kecamatan.index');
+        return redirect()->route('kecamatan.index')->withSuccess('Data Berhasil Dihapus!');
     }
 }

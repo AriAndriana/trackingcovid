@@ -5,9 +5,10 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/sb-admin-2.css')}}" rel="stylesheet">
     
     <link href="{{asset('vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     @livewireStyles
-    <link rel="stylesheet" type="text/css" href="{{asset('/pathto/css/sweetalert.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css')}}">
-    
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('/pathto/css/sweetalert.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css')}}"> --}}
+    {{-- <link rel="stylesheet" href="{{asset('sweetalert2.min.css')}}"> --}}

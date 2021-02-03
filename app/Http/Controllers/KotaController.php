@@ -58,7 +58,7 @@ class KotaController extends Controller
         $kota->nama_kota = $request->nama_kota;
         $kota->id_provinsi = $request->id_provinsi;
         $kota->save();
-        return redirect()->route('kota.index')->with(['message' => 'Data berhasil ditambah']);
+        return redirect()->route('kota.index')->withSuccess('Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -98,7 +98,7 @@ class KotaController extends Controller
         $kota->nama_kota = $request->nama_kota;
         $kota->id_provinsi = $request->id_provinsi;
         $kota->save();
-        return redirect()->route('kota.index')->with(['message' => 'Data berhasil ditambah']);
+        return redirect()->route('kota.index')->withSuccess('Data Berhasil Diubah!');
     }
 
     /**
@@ -111,6 +111,6 @@ class KotaController extends Controller
     {
         $kota = Kota::findOrFail($id);
         $kota->delete();
-        return \redirect()->route('kota.index');
+        return \redirect()->route('kota.index')->withSuccess('Data Berhasil Dihapus!');
     }
 }

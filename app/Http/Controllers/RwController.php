@@ -52,7 +52,7 @@ class RwController extends Controller
         $data->id_kelurahan = $request->id_kelurahan;
         $data->nama = $request->nama;
         $data->save();
-        return \redirect()->route('rw.index', \compact('data'));
+        return \redirect()->route('rw.index', \compact('data'))->withSuccess('Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -92,7 +92,7 @@ class RwController extends Controller
         $data->id_kelurahan = $request->id_kelurahan;
         $data->nama = $request->nama;
         $data->save();
-        return redirect()->route('rw.index', \compact('data'));
+        return redirect()->route('rw.index', \compact('data'))->withSuccess('Data Berhasil Diubah!');
     }
 
     /**
@@ -105,6 +105,6 @@ class RwController extends Controller
     {
         $data = Rw::findOrFail($id);
         $data->delete();
-        return redirect()->route('rw.index', compact('data'));
+        return redirect()->route('rw.index', compact('data'))->withSuccess('Data Berhasil Dihapus!');
     }
 }

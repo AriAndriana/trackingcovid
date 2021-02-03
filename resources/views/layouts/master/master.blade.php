@@ -84,6 +84,8 @@
         </div>
     </div>
 @include('template.js')
+@include('sweetalert::alert')
+
 
 </body>
 
