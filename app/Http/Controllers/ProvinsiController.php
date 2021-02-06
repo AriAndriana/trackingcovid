@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use RealRashid\SweetAlert\Facades\Alert;
+// use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Kota;
