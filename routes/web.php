@@ -7,6 +7,8 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\KelurahanController;
 use App\Http\Controllers\RwController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\FrontendController; 
+// use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +21,16 @@ use App\Http\Controllers\LaporanController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/backend', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/index', [FrontendController::class, 'index']);
+
+Route::resource('/', FrontendController::class);
 
 Route::group([ 'middleware' => ['auth']], function () {
     Route::resource('provinsi', ProvinsiController::class);
