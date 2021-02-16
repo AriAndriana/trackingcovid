@@ -124,17 +124,11 @@
                 <div class="text-white">
                   <h2 class="mb-0 number-font">INDONESIA</h2>
                   <p class="text-white mb-0">
-                    <?php 
-                      echo $id[0]['positif']
-                    ?>
+                    {{$positif1}}
                     &nbsp; POSITIF, &nbsp;
-                    <?php
-                     echo $id[0]['sembuh'] 
-                    ?>
+                    {{$sembuh1}}
                     &nbsp;SEMBUH, &nbsp;
-                    <?php
-                      echo $id[0]['meninggal']
-                    ?>
+                    {{$meninggal1}}
                     &nbsp;MENINGGAL
                   </p>
                 </div>
@@ -219,7 +213,7 @@
                           
                           ?>
                       <tr>
-                          <td> <?php echo $i+1 ?></td>
+                          <td> <?php echo  $i+1 ?></td>
                           <td> <?php echo $dunia[$i]['attributes']['Country_Region'] ?></td>
                           <td> <?php echo $dunia[$i]['attributes']['Confirmed'] ?></td>
                           <td><?php echo $dunia[$i]['attributes']['Recovered']?></td>

@@ -30,7 +30,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/index', [FrontendController::class, 'index']);
 
-Route::resource('/', FrontendController::class);
+Route::get('/', [FrontendController::class, 'index']);
+Route::get
 
 Route::group([ 'middleware' => ['auth']], function () {
     Route::resource('provinsi', ProvinsiController::class);
